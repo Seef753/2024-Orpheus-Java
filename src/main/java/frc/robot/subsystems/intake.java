@@ -3,12 +3,19 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class intake extends SubsystemBase{
-    private TalonFX intakemotor;
+    private TalonFX  intakemotor = new TalonFX(5);
 
-    public intake(TalonFX s){
-        this.intakemotor = s;
+    public intake(){
     }
-    public void setspeed(double speed){
-        intakemotor.set(speed);
+    @Override
+    public void periodic () {
+    }
+    
+    public void setspeed(double volts){
+        intakemotor.setVoltage(volts);
+    }
+
+    public void stop(){
+        in.stopMotor();
     }
 }
