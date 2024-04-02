@@ -105,6 +105,14 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+  public Command getAutonomousCommand() {
+    drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
+        drivetrain.applyRequest(() -> drive.withVelocityX(-0.2 * MaxSpeed) // Drive forward with
+                                                                                           // negative Y (forward)
+            .withVelocityY(0.0 * MaxSpeed) // Drive left with negative X (left)
+            .withRotationalRate(0.0 * MaxAngularRate) // Drive counterclockwise with negative X (left)
+        ));
+    //return Commands.print("No autonomous command configured");
+    return null;
   }
 }
